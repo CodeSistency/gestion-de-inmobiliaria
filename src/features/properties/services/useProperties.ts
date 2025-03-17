@@ -14,7 +14,7 @@ export function useProperties({ where = {} }: UsePropertiesParams = {}) {
       totalDocs: number;
     }>({
       key: 'propiedades',
-      url: '/api/payload/propiedades',
+      url: '/api/propiedades',
       queryParams,
       effect: [JSON.stringify(queryParams)],
     });

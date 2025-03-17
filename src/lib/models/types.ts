@@ -1,4 +1,4 @@
-import { User } from "@/payload-types";
+import { User, Propiedade } from "@/payload-types";
 
 
 export interface ApiResponse<T> {
@@ -12,8 +12,12 @@ export interface EntityModelUserType {
 	Users: User[];
 }
 
+export interface EntityModelPropiedadesType {
+	Propiedades: Propiedade[];
+}
 
-export type EntityModelType =  EntityModelUserType;
+
+export type EntityModelType =  EntityModelUserType & EntityModelPropiedadesType;
 
 export type KeyEntityModelType = keyof EntityModelType;
 
@@ -22,6 +26,8 @@ export type ExtendsKeyEntityModelType<T extends KeyEntityModelType> =
 	
 		T extends "Users"
 		? User
+		: T extends "Propiedades"
+		? Propiedade
 		: never;		
 
 

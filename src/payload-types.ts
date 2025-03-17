@@ -222,20 +222,50 @@ export interface ListadoAgentesPropiedade {
  */
 export interface Propiedade {
   id: number;
+  titulo: string;
   direccion: string;
   ciudad: string;
   pais: string;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  ubicacion?: [number, number] | null;
   tipo: 'venta' | 'alquiler';
   precio: number;
   moneda?: string | null;
   metros_cuadrados?: number | null;
   habitaciones?: number | null;
   baños?: number | null;
-  descripcion?: string | null;
+  caracteristicas?: ('estacionamiento' | 'piscina' | 'jardin' | 'garaje')[] | null;
+  descripcion?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   estado: 'disponible' | 'reservada' | 'vendida' | 'alquilada';
   fecha_publicacion?: string | null;
   fecha_actualizacion?: string | null;
   propietario?: (number | null) | Cliente;
+  agente?: (number | null) | Agente;
+  imagenes?:
+    | {
+        imagen?: (number | null) | Media;
+        descripcion_imagen?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  destacada?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -450,20 +480,32 @@ export interface ListadoAgentesPropiedadesSelect<T extends boolean = true> {
  * via the `definition` "propiedades_select".
  */
 export interface PropiedadesSelect<T extends boolean = true> {
+  titulo?: T;
   direccion?: T;
   ciudad?: T;
   pais?: T;
+  ubicacion?: T;
   tipo?: T;
   precio?: T;
   moneda?: T;
   metros_cuadrados?: T;
   habitaciones?: T;
   baños?: T;
+  caracteristicas?: T;
   descripcion?: T;
   estado?: T;
   fecha_publicacion?: T;
   fecha_actualizacion?: T;
   propietario?: T;
+  agente?: T;
+  imagenes?:
+    | T
+    | {
+        imagen?: T;
+        descripcion_imagen?: T;
+        id?: T;
+      };
+  destacada?: T;
   updatedAt?: T;
   createdAt?: T;
 }

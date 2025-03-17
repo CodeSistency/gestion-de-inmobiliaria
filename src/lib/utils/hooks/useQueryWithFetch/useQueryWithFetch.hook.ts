@@ -18,12 +18,20 @@ export const useQueryWithFetchHook = <T>({
 	effect?: any[];
   }) => {
 	const getData = async () => {
-	  const urlWithParams = new URL(url);
-	  Object.entries(queryParams).forEach(([key, value]) => {
-		urlWithParams.searchParams.append(key, JSON.stringify(value));
-	  });
-	  return fetchClientFunc<T>({ method: 'GET', url: urlWithParams.toString(), cache: 'no-cache' });
-	};
+	const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'http://localhost'; // Fallback for SSR/testing
+    const absoluteUrl = url.startsWith('http') ? url : `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`;
+    const urlWithParams = new URL(absoluteUrl);
+
+    Object.entries(queryParams).forEach(([key, value]) => {
+      urlWithParams.searchParams.append(key, JSON.stringify(value));
+    });
+
+    return fetchClientFunc<T>({ 
+      method: 'GET', 
+      url: urlWithParams.toString(), 
+      cache: 'no-cache' 
+    });
+  };
   
 	return useQuery<T, Error>({
 	  queryKey: [`${key}Get`, ...effect],

@@ -1,4 +1,4 @@
-import PropertyDetail from '@/app/features/properties/propertyDetail/PropertyDetailScreen';
+import PropertyDetail from '@/features/properties/propertyDetail/PropertyDetailScreen';
 import ClientLayout from '@/app/layouts/client/ClientLayout';
 import React from 'react'
 

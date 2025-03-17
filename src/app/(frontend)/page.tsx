@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
 import './styles.css'
-import PropertyHomePage from '../features/properties/propertyScreen/PropertyHomePage'
+import PropertyHomePage from '../../features/properties/propertyScreen/PropertyHomePage'
 import ClientLayout from '../layouts/client/ClientLayout'
 
 export default function Home() {

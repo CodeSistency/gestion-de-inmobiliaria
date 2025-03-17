@@ -35,7 +35,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: process.env.DATABASE_URI || 'postgres://admin:admin@127.0.0.1:5433/jose',
     },
   }),
   sharp,

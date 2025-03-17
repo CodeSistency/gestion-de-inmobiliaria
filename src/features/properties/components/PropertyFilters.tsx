@@ -1,4 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface FilterForm {
   ciudad?: string;
@@ -24,35 +26,35 @@ export default function PropertyFilters({ onFilterChange }: PropertyFiltersProps
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-tertiary dark:bg-tertiaryDark p-4 rounded-lg shadow-md mb-6"
+      className="bg-tertiary dark:bg-tertiaryDark p-6 rounded-lg shadow-md mb-8"
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <input
+        <Input
           {...register('ciudad')}
           placeholder="Ciudad"
-          className="border border-gray dark:border-grayDark p-2 rounded-md text-primary dark:text-primaryDark bg-gray dark:bg-grayDark focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+          className="text-primary dark:text-tertiary bg-gray dark:bg-grayDark focus:ring-secondary dark:focus:ring-secondaryDark border-secondary dark:border-secondaryDark"
         />
         <select
           {...register('tipo')}
-          className="border border-gray dark:border-grayDark p-2 rounded-md text-primary dark:text-primaryDark bg-gray dark:bg-grayDark focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+          className="border border-secondary dark:border-secondaryDark p-2 rounded-md text-primary dark:text-tertiary bg-gray dark:bg-grayDark focus:outline-none focus:ring-2 focus:ring-secondary dark:focus:ring-secondaryDark transition-all"
         >
           <option value="">Tipo</option>
           <option value="venta">Venta</option>
           <option value="alquiler">Alquiler</option>
         </select>
-        <input
+        <Input
           {...register('precioMax')}
           type="number"
           placeholder="Precio Máximo"
-          className="border border-gray dark:border-grayDark p-2 rounded-md text-primary dark:text-primaryDark bg-gray dark:bg-grayDark focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+          className="text-primary dark:text-tertiary bg-gray dark:bg-grayDark focus:ring-secondary dark:focus:ring-secondaryDark border-secondary dark:border-secondaryDark"
         />
       </div>
-      <button
+      <Button
         type="submit"
-        className="mt-4 w-full bg-secondary dark:bg-secondaryDark text-primary dark:text-primaryDark py-2 rounded-md hover:bg-opacity-90 transition-colors font-semibold"
+        className="mt-6 w-full bg-secondary dark:bg-secondaryDark text-primary dark:text-primaryDark hover:bg-opacity-90 transition-colors border-2 border-primary dark:border-tertiary"
       >
         Filtrar
-      </button>
+      </Button>
     </form>
   );
 }
