@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Propiedade } from "@/payload-types";
+import { useEffect, useState } from 'react';
+import { Media, Propiedade } from "@/payload-types";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,8 +15,15 @@ export default function PropertyCard({ propiedad }: PropertyCardProps) {
   const {actions: {setModelTemp}} = useModelTempStore();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  useEffect(() => {
+    console.log('propiedad', propiedad);
+  }, [propiedad]);
+
   // Extract images from the imagenes array
-  const images = propiedad.imagenes?.map(item => item.imagen).filter(url => url) || ['/placeholder-image.jpg'];
+  const images = (propiedad.imagenes as { imagen: Media }[]).map((item) => item.imagen?.url).filter(url => url) || ['/placeholder-image.jpg'];
+  useEffect(() => {
+    console.log('propiedad', propiedad);
+  }, [propiedad]);
 
   // Handle image navigation
   const nextImage = () => {
@@ -72,14 +79,14 @@ export default function PropertyCard({ propiedad }: PropertyCardProps) {
           <p className="text-sm text-gray-600 dark:text-gray-300">
             {propiedad.ciudad}, {propiedad.pais}
           </p>
-          <p className="text-lg font-bold text-secondary dark:text-secondaryDark mt-2">
+          <p className="text-lg font-bold text-gray-600 dark:text-secondaryDark mt-2">
             ${propiedad.precio.toLocaleString()} {propiedad.moneda || 'USD'}
           </p>
           <p className="text-sm text-primary dark:text-tertiary mt-1">
             {propiedad.metros_cuadrados ?? '-'} m² | {propiedad.habitaciones ?? '-'} hab |{' '}
             {propiedad.baños ?? '-'} baños
           </p>
-          <Link onClick={() => setModelTemp(PropiedadesModel.key, [propiedad])} href={`/propiedades?id=${propiedad.id}`} passHref>
+          <Link onClick={() => setModelTemp(PropiedadesModel.key, [propiedad])} href={`/propiedades/${propiedad.id}`} passHref>
             <Button
               variant="outline"
               className="mt-4 bg-primary dark:bg-primaryDark text-tertiary dark:text-tertiary hover:bg-secondary dark:hover:bg-secondaryDark hover:text-primary dark:hover:text-primaryDark transition-colors w-full border-2 border-primary dark:border-tertiary rounded-lg"

@@ -2,14 +2,37 @@
 import PropertiesList from "../components/PropertyList";
 import { Button } from "@/components/ui/button";
 
+
+
 export default function PropertyHomePage() {
   return (
     <div className="bg-gray dark:bg-grayDark">
       {/* Hero Section */}
-      <section className="relative bg-gray dark:bg-primaryDark text-primary dark:text-tertiary py-24">
+        <section className="relative bg-gray dark:bg-primaryDark text-primary dark:text-tertiary py-24">
+          <img
+            className="absolute inset-0 w-full h-full object-cover opacity-50"
+            src="/api/media/file/inmobiliaria-hero.jpg"
+            alt="Hero Image"
+          />
+          <div className="relative container mx-auto text-center px-6 z-10">
+            <h1 className="text-5xl font-bold mb-6 border-b-4 border-secondary dark:border-secondaryDark inline-block pb-2">
+              Bienvenido a Tu Hogar Ideal
+            </h1>
+            <p className="text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
+              Encuentra las mejores propiedades para venta o alquiler con nosotros. Explora nuestro catálogo y comienza tu búsqueda hoy mismo.
+            </p>
+            <Button
+              asChild
+              className="bg-secondary dark:bg-secondaryDark text-primary dark:text-primaryDark hover:bg-opacity-90 transition-colors border-2 border-primary dark:border-tertiary"
+            >
+              <a href="#propiedades">Ver Propiedades</a>
+            </Button>
+          </div>
+      </section>
+      {/* <section className="relative bg-gray dark:bg-primaryDark text-primary dark:text-tertiary py-24">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-50"
-          style={{ backgroundImage: "url('/placeholder-hero.jpg')" }}
+          style={{ backgroundImage: "url('/api/media/file/real_estate.jpeg')" }}
         ></div>
         <div className="relative container mx-auto text-center px-6 z-10">
           <h1 className="text-5xl font-bold mb-6 border-b-4 border-secondary dark:border-secondaryDark inline-block pb-2">
@@ -25,7 +48,7 @@ export default function PropertyHomePage() {
             <a href="#propiedades">Ver Propiedades</a>
           </Button>
         </div>
-      </section>
+      </section> */}
 
       {/* Properties Section */}
       <section id="propiedades" className="py-16">
@@ -38,11 +61,11 @@ export default function PropertyHomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className="bg-tertiary dark:bg-tertiaryDark py-16">
+      <section id="sobre-nosotros" className="bg-tertiary dark:bg-tertiaryDark py-16">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
           <div className="md:w-1/2">
             <img
-              src="/placeholder-about.jpg"
+              src="/api/media/file/aboutus.jpeg"
               alt="Sobre Nosotros"
               className="rounded-lg shadow-md w-full h-64 object-cover border-4 border-secondary dark:border-secondaryDark"
             />

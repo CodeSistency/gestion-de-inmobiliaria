@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import Link from 'next/link';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,15 +25,15 @@ export default function ClientLayout({ children }: LayoutProps) {
           <h1 className="text-2xl font-bold">Inmobiliaria</h1>
           <div className="flex items-center space-x-4">
             <nav className="hidden md:flex space-x-6">
-              <a href="#" className="hover:text-secondary dark:hover:text-secondaryDark transition-colors">
+              <Link href="/#" className="hover:text-secondary dark:hover:text-secondaryDark transition-colors">
                 Inicio
-              </a>
-              <a href="#propiedades" className="hover:text-secondary dark:hover:text-secondaryDark transition-colors">
+              </Link>
+              <Link href="/#propiedades" className="hover:text-secondary dark:hover:text-secondaryDark transition-colors">
                 Propiedades
-              </a>
-              <a href="#sobre-nosotros" className="hover:text-secondary dark:hover:text-secondaryDark transition-colors">
+              </Link>
+              <Link href="/#sobre-nosotros" className="hover:text-secondary dark:hover:text-secondaryDark transition-colors">
                 Sobre Nosotros
-              </a>
+              </Link>
             </nav>
             <Button
               variant="outline"
