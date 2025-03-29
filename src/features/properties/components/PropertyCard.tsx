@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Media, Propiedade } from "@/payload-types";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from 'lucide-react'; // Icons for carousel navigation
@@ -39,10 +40,12 @@ export default function PropertyCard({ propiedad }: PropertyCardProps) {
       <CardContent className="p-0">
         {/* Image Carousel */}
         <div className="relative h-48">
-          <img
-            src={images[currentImageIndex]?.toString()}
+          <Image
+            src={images[currentImageIndex]?.toString() || '/placeholder-image.jpg'}
             alt={propiedad.direccion}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           {images.length > 1 && (
             <>

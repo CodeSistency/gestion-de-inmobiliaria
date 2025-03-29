@@ -7,8 +7,13 @@ interface VisitListProps {
   clienteId?: number; // Filtrar por cliente
 }
 
+type VisitWhereClause = {
+  agente?: { equals: number };
+  cliente?: { equals: number };
+};
+
 export default function VisitList({ agenteId, clienteId }: VisitListProps) {
-  const where: Record<string, any> = {};
+  const where: VisitWhereClause = {};
   if (agenteId) where.agente = { equals: agenteId };
   if (clienteId) where.cliente = { equals: clienteId };
 

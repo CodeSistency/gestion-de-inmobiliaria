@@ -4,11 +4,22 @@ import PropertyFilters from './PropertyFilters';
 import { useProperties } from '../services/useProperties';
 import { Card, CardContent } from "@/components/ui/card";
 
+type FilterValue = {
+  equals?: string;
+  less_than_equal?: number;
+};
+
+type PropertyFilters = {
+  ciudad?: FilterValue;
+  tipo?: FilterValue;
+  precio?: FilterValue;
+};
+
 export default function PropertiesList() {
-  const [filters, setFilters] = useState<Record<string, any>>({});
+  const [filters, setFilters] = useState<PropertyFilters>({});
   const { properties, isLoading, isError, error } = useProperties({ where: filters });
 
-  const handleFilterChange = (newFilters: Record<string, any>) => {
+  const handleFilterChange = (newFilters: PropertyFilters) => {
     setFilters(newFilters);
   };
 

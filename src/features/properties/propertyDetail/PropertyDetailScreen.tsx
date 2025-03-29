@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { Media, Propiedade } from '@/payload-types';
 import { fetchClientFunc } from '@/lib/utils/fetchClient';
 import VisitForm from '../../visits/visitForm/VisitFormScreen';
@@ -101,10 +102,12 @@ export default function PropertyDetail() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* Image Carousel Section */}
               <div className="h-[28rem] relative">
-                <img
+                <Image
                   src={images[currentImageIndex] || mainImage || '/placeholder-image.jpg'} 
                   alt={propiedad.direccion}
-                  className="w-full h-full object-cover rounded-lg shadow-lg border-4 border-secondary dark:border-secondaryDark"
+                  fill
+                  className="object-cover rounded-lg shadow-lg border-4 border-secondary dark:border-secondaryDark"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {images.length > 1 && (
                   <>

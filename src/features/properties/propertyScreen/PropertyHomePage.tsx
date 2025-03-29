@@ -1,18 +1,20 @@
 "use client";
 import PropertiesList from "../components/PropertyList";
 import { Button } from "@/components/ui/button";
-
-
+import Image from "next/image";
 
 export default function PropertyHomePage() {
   return (
     <div className="bg-gray dark:bg-grayDark">
       {/* Hero Section */}
         <section className="relative bg-gray dark:bg-primaryDark text-primary dark:text-tertiary py-24">
-          <img
+          <Image
             className="absolute inset-0 w-full h-full object-cover opacity-50"
             src="/api/media/file/inmobiliaria-hero.jpg"
             alt="Hero Image"
+            fill
+            sizes="100vw"
+            priority
           />
           <div className="relative container mx-auto text-center px-6 z-10">
             <h1 className="text-5xl font-bold mb-6 border-b-4 border-secondary dark:border-secondaryDark inline-block pb-2">
@@ -64,11 +66,15 @@ export default function PropertyHomePage() {
       <section id="sobre-nosotros" className="bg-tertiary dark:bg-tertiaryDark py-16">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <img
-              src="/api/media/file/aboutus.jpeg"
-              alt="Sobre Nosotros"
-              className="rounded-lg shadow-md w-full h-64 object-cover border-4 border-secondary dark:border-secondaryDark"
-            />
+            <div className="relative h-64">
+              <Image
+                src="/api/media/file/aboutus.jpeg"
+                alt="Sobre Nosotros"
+                fill
+                className="rounded-lg shadow-md object-cover border-4 border-secondary dark:border-secondaryDark"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
           <div className="md:w-1/2 text-center md:text-left">
             <h2 className="text-3xl font-bold text-primary dark:text-secondaryDark mb-6">Sobre Nosotros</h2>

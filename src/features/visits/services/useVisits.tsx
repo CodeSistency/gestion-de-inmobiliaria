@@ -12,6 +12,11 @@ interface VisitData {
   comentarios?: string;
 }
 
+type VisitWhereClause = {
+  agente?: { equals: number };
+  cliente?: { equals: number };
+};
+
 // Crear una visita
 export async function createVisit(visitData: VisitData): Promise<Visita> {
   try {
@@ -33,7 +38,7 @@ export async function updateVisit(id: number, updates: Partial<VisitData>): Prom
 }
 
 // Obtener visitas con filtros opcionales
-export function useVisits({ where = {} }: { where?: Record<string, any> } = {}) {
+export function useVisits({ where = {} }: { where?: VisitWhereClause } = {}) {
   const queryParams = { where };
 
   const { data, isLoading, isError, error } = useQueryWithFetchHook<{

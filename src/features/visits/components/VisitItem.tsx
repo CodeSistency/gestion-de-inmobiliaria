@@ -54,7 +54,7 @@ export default function VisitItem({ visita, other, onUpdate }: VisitItemProps) {
         </p>
         {visita.comentarios && (
           <p className="text-sm text-primary dark:text-primaryDark mt-1 italic">
-            "{visita.comentarios}"
+            &ldquo;{visita.comentarios}&rdquo;
           </p>
         )}
       </div>

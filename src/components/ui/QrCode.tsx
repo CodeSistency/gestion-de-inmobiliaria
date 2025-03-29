@@ -3,6 +3,7 @@
 
 import React from 'react';
 import QRCode from 'qrcode'
+import Image from 'next/image'
 
 // Tipo personalizado para las props del campo ui
 interface QrCodeFieldProps {
@@ -24,14 +25,19 @@ export const QrCodeField: React.FC<QrCodeFieldProps> = ({ data }) => {
         .then((qrData) => setQrImage(qrData))
         .catch((err) => console.error('Error generando QR:', err));
     }
-  }, [propertyUrl]);
+  }, [baseUrl, data?.id, propertyUrl]);
 
   return (
     <div>
       <h3>Código QR</h3>
       {qrImage ? (
         <div>
-          <img src={qrImage} alt="Código QR de la propiedad" />
+          <Image 
+            src={qrImage} 
+            alt="Código QR de la propiedad"
+            width={200}
+            height={200}
+          />
           <a href={qrImage} download={`qr-propiedad-${data?.id || 'unknown'}.png`}>
             Descargar QR
           </a>

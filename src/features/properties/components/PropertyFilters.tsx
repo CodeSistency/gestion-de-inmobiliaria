@@ -8,15 +8,26 @@ interface FilterForm {
   precioMax?: number;
 }
 
+type FilterValue = {
+  equals?: string;
+  less_than_equal?: number;
+};
+
+type PropertyFilters = {
+  ciudad?: FilterValue;
+  tipo?: FilterValue;
+  precio?: FilterValue;
+};
+
 interface PropertyFiltersProps {
-  onFilterChange: (filters: Record<string, any>) => void;
+  onFilterChange: (filters: PropertyFilters) => void;
 }
 
 export default function PropertyFilters({ onFilterChange }: PropertyFiltersProps) {
   const { register, handleSubmit } = useForm<FilterForm>();
 
   const onSubmit: SubmitHandler<FilterForm> = (data) => {
-    const filters: Record<string, any> = {};
+    const filters: PropertyFilters = {};
     if (data.ciudad) filters.ciudad = { equals: data.ciudad };
     if (data.tipo) filters.tipo = { equals: data.tipo };
     if (data.precioMax) filters.precio = { less_than_equal: data.precioMax };
