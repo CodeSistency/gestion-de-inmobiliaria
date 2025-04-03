@@ -35,12 +35,12 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || 'postgres://admin:admin@127.0.0.1:5433/test2',
+      connectionString: process.env.DATABASE_URI || 'postgresql://class_room_db_owner:QyL3IcNuDhr4@ep-orange-poetry-a5z1ifzg-pooler.us-east-2.aws.neon.tech/inmobiliaria?sslmode=require',
     },
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
+    // payloadCloudPlugin(),
     vercelBlobStorage({
       enabled: true, // Optional, defaults to true
       // Specify which collections should use Vercel Blob
@@ -48,7 +48,7 @@ export default buildConfig({
         media: true,
       },
       // Token provided by Vercel once Blob storage is added to your Vercel project
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN || "vercel_blob_rw_HsLr9els0YznaGlu_ycFb5BLtm9J8AFgmcdtFyFLWi4UdaN",
     }),
     // storage-adapter-placeholder
   ],
